@@ -1,3 +1,12 @@
+----------------------------------------------------------------------------------------------------------
+Tutorial 12 reflection:
+1. initial diagram:
+context:
+![first-context-diagram](diagram/r1.jpg)
+container:
+![first-container-diagram](diagram/r2.png)
+
+----------------------------------------------------------------------------------------------------------
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
