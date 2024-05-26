@@ -11,7 +11,7 @@
 
 // export const getCatalogue = async () => {
 //     const res = await fetch(
-//       'http://localhost:8080/product/catalogue', 
+//       'http://34.87.141.138/product/catalogue', 
 //       {cache: 'no-store'}
 //     );
   
