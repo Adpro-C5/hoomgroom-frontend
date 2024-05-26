@@ -1,11 +1,5 @@
 import { PasswordForm } from '@/components/forms';
-import type { Metadata } from 'next';
 import Link from 'next/link';
-
-export const metadata: Metadata = {
-	title: 'HoomGroom | Profile Password',
-	description: 'HoomGroom Profile Password page',
-};
 
 export default function Page() {
 	return (

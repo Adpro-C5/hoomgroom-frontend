@@ -1,11 +1,5 @@
 import Link from 'next/link';
 import { RegisterForm } from '@/components/forms';
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-	title: 'HoomGroom | Register',
-	description: 'HoomGroom register page',
-};
 
 export default function Page() {
 	return (

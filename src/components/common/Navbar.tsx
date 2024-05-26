@@ -7,6 +7,7 @@ import { useAppSelector, useAppDispatch } from '@/redux/hooks';
 import { useLogoutMutation } from '@/redux/features/authApiSlice';
 import { logout as setLogout } from '@/redux/features/authSlice';
 import { NavLink } from '@/components/common';
+import { toast } from 'react-toastify';
 
 export default function Navbar() {
 	const pathname = usePathname();
@@ -20,7 +21,10 @@ export default function Navbar() {
 		logout(undefined)
 			.unwrap()
 			.then(() => {
+				toast.success('Logged out');
 				dispatch(setLogout());
+			}).catch(() => {
+				toast.error('Failed to log out');
 			});
 	};
 
@@ -49,9 +53,14 @@ export default function Navbar() {
 			>
 				Profile
 			</NavLink>
-			<NavLink isMobile={isMobile} onClick={handleLogout}>
+			<button
+				className={`${
+					isMobile ? 'block w-full text-left' : 'inline-block'
+				} bg-amber-500 text-white px-3 py-2 rounded-md text-sm font-medium`}
+				onClick={handleLogout}
+			>
 				Logout
-			</NavLink>
+			</button>
 		</>
 	);
 
@@ -62,29 +71,39 @@ export default function Navbar() {
 				isMobile={isMobile}
 				href='/auth/login'
 			>
-				Login
+				<button
+					className={`${
+						isMobile ? 'block w-full text-left' : 'inline-block'
+					} bg-amber-500 text-white px-3 py-2 rounded-md text-sm font-medium`}
+				>
+					Login
+				</button>
 			</NavLink>
 			<NavLink
 				isSelected={isSelected('/auth/register')}
 				isMobile={isMobile}
 				href='/auth/register'
 			>
-				Register
+				<button
+					className={`${
+						isMobile ? 'block w-full text-left' : 'inline-block'
+					} bg-amber-500 text-white px-3 py-2 rounded-md text-sm font-medium`}
+				>
+					Register
+				</button>
 			</NavLink>
 		</>
 	);
 
 	return (
-		<Disclosure as='nav' className='bg-gray-100'>
+		<Disclosure as='nav' className='bg-blue-900'>
 			{({ open }) => (
 				<>
 					<div className='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
 						<div className='relative flex h-16 items-center justify-between'>
 							<div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
-								<Disclosure.Button className='inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
-									<span className='sr-only'>
-										Open main menu
-									</span>
+								<Disclosure.Button className='inline-flex items-center justify-center rounded-md p-2 text-white hover:bg-amber-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
+									<span className='sr-only'>Open main menu</span>
 									{open ? (
 										<XMarkIcon
 											className='block h-6 w-6'
@@ -100,7 +119,7 @@ export default function Navbar() {
 							</div>
 							<div className='flex flex-1 items-center justify-center sm:items-stretch sm:justify-start'>
 								<div className='flex flex-shrink-0 items-center'>
-									<NavLink href='/' isBanner>
+									<NavLink href='/' isBanner className='text-white'>
 										HoomGroom
 									</NavLink>
 								</div>
