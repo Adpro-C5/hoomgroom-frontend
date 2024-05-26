@@ -1,3 +1,5 @@
+import { toast } from "react-toastify"
+
 const productadd = async (id: string, name: string, description: string, categories: string[], 
   imagePath: string, price: string, discountedPrice: string
 ) => {
@@ -12,7 +14,7 @@ const productadd = async (id: string, name: string, description: string, categor
     sales: 0, 
   }).replace('FIRSTDOUBLE', price).replace('SECONDDOUBLE', discountedPrice)
   
-  const res = await fetch('http://localhost:8080/product/add', {
+  const res = await fetch('http://34.87.141.138/product/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -20,9 +22,9 @@ const productadd = async (id: string, name: string, description: string, categor
     body: json
   })
   if (res.status === 201) {
-    alert("Successfully created product")
+    toast.success("Successfully created product")
   } else {
-    alert("Product already exists")
+    toast.warning("Product already exists")
   }
 }
 

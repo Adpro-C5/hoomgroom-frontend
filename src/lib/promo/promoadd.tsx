@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { v4 } from 'uuid';
 
 const promoadd = async (name: string, description: string, expiredDate: string, minimumPurchase: string) => {
@@ -9,7 +10,7 @@ const promoadd = async (name: string, description: string, expiredDate: string, 
     minimumPurchase: 'DOUBLE', 
   }).replace('DOUBLE', minimumPurchase)
   
-  const res = await fetch('http://localhost:8080/promo_code/add', {
+  const res = await fetch('http://34.87.141.138/promo_code/add', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -17,9 +18,9 @@ const promoadd = async (name: string, description: string, expiredDate: string, 
     body: json
   })
   if (res.status === 201) {
-    alert("Successfully created promo code")
+    toast.success("Successfully created promo code")
   } else {
-    alert("Promo Code already exists")
+    toast.warning("Promo Code already exists")
   }
 }
 

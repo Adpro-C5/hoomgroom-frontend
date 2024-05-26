@@ -11,9 +11,9 @@ export interface Product {
   sales: Number,
 }
 
-export const getProducts = async () => {
+export const getBestProducts = async () => {
   const res = await fetch(
-    'http://34.87.141.138/product/list', 
+    'http://34.87.141.138/product/top10', 
     {cache: 'no-store'}
   );
 

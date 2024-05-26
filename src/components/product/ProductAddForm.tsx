@@ -16,11 +16,12 @@ export default function ProductAddForm() {
   const [errors, setErrors] = useState({} as any);
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const options = [{value: 'kursi', label: 'kursi'}, {value: 'meja', label: 'meja'}, {
-    value: 'lemari', label: 'lemari'}, {value: 'sofa', label: 'sofa'}, {value: 'rak', label: 'rak'}, {
-    value: 'kayu', label: 'kayu'}, {value: 'kaca', label: 'kaca'}, {value: 'marmer', label: 'marmer'}, {
-    value: 'keramik', label: 'keramik'}, {value: 'exotic', label: 'exotic'}, {
-    value: 'karpet', label: 'karpet'}, {value: 'dinding', label: 'dinding'}, {value: 'pot', label: 'pot'}
+  const options = [
+    {value: 'kursi', label: 'kursi'}, 
+    {value: 'meja', label: 'meja'}, 
+    {value: 'penyimpanan', label: 'penyimpanan'}, 
+    {value: 'dekorasi', label: 'dekorasi'}, 
+    {value: 'ranjang', label: 'ranjang'}, 
   ]
   
 

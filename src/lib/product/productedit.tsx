@@ -1,3 +1,5 @@
+import { toast } from "react-toastify"
+
 const productadd = async (id: string, name: string, description: string, categories: string[], 
   imagePath: string, price: string, discountedPrice: string
 ) => {
@@ -12,7 +14,7 @@ const productadd = async (id: string, name: string, description: string, categor
     sales: 0, 
   }).replace('FIRSTDOUBLE', price).replace('SECONDDOUBLE', discountedPrice)
   
-  const res = await fetch(`http://localhost:8080/product/edit/${id}`, {
+  const res = await fetch(`http://34.87.141.138/product/edit/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -20,9 +22,9 @@ const productadd = async (id: string, name: string, description: string, categor
     body: json
   })
   if (res.status === 200) {
-    alert("Successfully edited product")
+    toast.success("Successfully edited product")
   } else {
-    alert("Product failed to be edited")
+    toast.error("Product failed to be edited")
   }
 }
 

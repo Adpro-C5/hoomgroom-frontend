@@ -1,5 +1,7 @@
+import { toast } from "react-toastify"
+
 const promoedit = async (id: string, name: string, description: string, expiredDate: string, minimumPurchase: string) => {
-  const res = await fetch(`http://localhost:8080/promo_code/edit/${id}`, {
+  const res = await fetch(`http://34.87.141.138/promo_code/edit/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -13,9 +15,9 @@ const promoedit = async (id: string, name: string, description: string, expiredD
       }).replace('DOUBLE', minimumPurchase)
     })
     if (res.status === 200) {
-      alert("Successfully edited promo code")
+      toast.success("Successfully edited promo code")
     } else {
-      alert("Edit failed, please check if name is not already used")
+      toast.error("Edit failed, please check if name is not already used")
     }
 }
 

@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+
 export interface PromoCode {
   id: string,
   name: String,
@@ -8,12 +10,12 @@ export interface PromoCode {
 
 export const getPromos = async () => {
   const res = await fetch(
-    'http://localhost:8080/promo_code/list', 
+    'http://34.87.141.138/promo_code/list', 
     {cache: 'no-store'}
   );
 
   if (!res.ok) {
-    alert("Failed to retrieve Promo Codes")
+    toast.error("Failed to retrieve Promo Codes")
     return null;
   }
   return await res.json();  
