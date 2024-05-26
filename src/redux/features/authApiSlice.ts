@@ -25,7 +25,7 @@ const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
 		login: builder.mutation({
 			query: ({ username, password }) => ({
-				url: '/login',
+				url: 'auth/login',
 				method: 'POST',
 				body: { username, password },
 			}),
@@ -40,7 +40,7 @@ const authApiSlice = apiSlice.injectEndpoints({
                 address,
                 password
 			}) => ({
-				url: '/register',
+				url: 'auth/register',
 				method: 'POST',
 				body: { 
                     fullName,
@@ -55,7 +55,7 @@ const authApiSlice = apiSlice.injectEndpoints({
 		}),
 		logout: builder.mutation({
 			query: () => ({
-				url: '/userLogout',
+				url: 'auth/userLogout',
 				method: 'POST',
 				headers: {
 					'Authorization': `Bearer ${localStorage.getItem('token')}`,

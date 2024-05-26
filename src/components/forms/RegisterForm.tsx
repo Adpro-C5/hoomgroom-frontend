@@ -48,7 +48,7 @@ export default function RegisterForm() {
 			required: true,
 		},
 		{
-			labelText: 'Email address',
+			labelText: 'Email',
 			labelId: 'email',
 			type: 'email',
 			value: email,
