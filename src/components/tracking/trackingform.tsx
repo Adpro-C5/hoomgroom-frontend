@@ -1,9 +1,8 @@
 "use client"
-import { stat } from 'fs';
 import React from 'react'
 import { useState } from 'react';
 
-const trackingform = () => {
+const TrackingForm = () => {
   const[status,setStatus] = useState("");
   const[error,setError] = useState(false);
 
@@ -75,4 +74,4 @@ const trackingform = () => {
   )
 }
 
-export default trackingform
+export default TrackingForm;
