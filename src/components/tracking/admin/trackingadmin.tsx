@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const TrackingAdmin = () => {
   const [statusMessage, setStatusMessage] = useState("");
@@ -7,6 +7,14 @@ const TrackingAdmin = () => {
   const [orderId, setOrderId] = useState("");
   const [transportationType, setTransportationType] = useState("");
   const [error, setError] = useState(false);
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+      const storedToken = window.localStorage.getItem('token');
+      if (storedToken) {
+          setToken(storedToken);
+      }
+  }, []);
 
   const getShipment = async (trackingNumber:string) => {
     try {
@@ -39,39 +47,85 @@ const TrackingAdmin = () => {
       setStatusMessage("An error occurred while fetching the shipment.");
       return;
     } else if (shipment.status === "MENUNGGU_VERIFIKASI") {
-      await fetch(`http://34.143.167.93/shipment/update-status-order/${trackingNumber}/DIPROSES`, {
+      const response = await fetch(`http://34.143.167.93/shipment/update-status-order/${trackingNumber}/DIPROSES`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'key': 'Access-Control-Allow-Origin',
+          'value': `process.env.NEXT_PUBLIC_APP_URL`,
         },
       });
+      if (!response.ok) {
+        setError(true);
+        setStatusMessage("Failed to update status because " + await response.text());
+        return;
+      }
       setStatusMessage("Status updated to DIPROSES");
     } else if (shipment.status === "DIPROSES") {
-      await fetch(`http://34.143.167.93/shipment/update-status-order/${trackingNumber}/DIKIRIM`, {
+      const response = await fetch(`http://34.143.167.93/shipment/update-status-order/${trackingNumber}/DIKIRIM`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'key': 'Access-Control-Allow-Origin',
+          'value': `process.env.NEXT_PUBLIC_APP_URL`,
         },
       });
+      if (!response.ok) {
+        setError(true);
+        setStatusMessage("Failed to update status because " + await response.text());
+        return;
+      }
       setOrderId(trackingNumber);
       setShowModal(true);
     } else if (shipment.status === "DIKIRIM") {
-      await fetch(`http://34.143.167.93/shipment/update-status-order/${trackingNumber}/TIBA`, {
+      const response = await fetch(`http://34.143.167.93/shipment/update-status-order/${trackingNumber}/TIBA`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'key': 'Access-Control-Allow-Origin',
+          'value': `process.env.NEXT_PUBLIC_APP_URL`,
         },
       });
+      if (!response.ok) {
+        setError(true);
+        setStatusMessage("Failed to update status because " + await response.text());
+        return;
+      }
       setStatusMessage("Status updated to TIBA");
     } else if (shipment.status === "TIBA") {
-      await fetch(`http://34.143.167.93/shipment/update-status-order/${trackingNumber}/SELESAI`, {
+      const response = await fetch(`http://34.143.167.93/shipment/update-status-order/${trackingNumber}/SELESAI`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'key': 'Access-Control-Allow-Origin',
+          'value': `process.env.NEXT_PUBLIC_APP_URL`,
         },
       });
+      if (!response.ok) {
+        setError(true);
+        setStatusMessage("Failed to update status because " + await response.text());
+        return;
+      }
       setStatusMessage("Shipment Done!");
     } else if (shipment.status === "SELESAI") {
+      const response = await fetch(`http://34.143.167.93/shipment/update-status-order/${trackingNumber}/SELESAI`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'key': 'Access-Control-Allow-Origin',
+          'value': `process.env.NEXT_PUBLIC_APP_URL`,
+        },
+      });
+      if (!response.ok) {
+        setError(true);
+        setStatusMessage("Failed to update status because " + await response.text());
+        return;
+      }
       setStatusMessage("Shipment already done!");
     }
   }
@@ -84,12 +138,15 @@ const TrackingAdmin = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'key': 'Access-Control-Allow-Origin',
+          'value': `process.env.NEXT_PUBLIC_APP_URL`,
         },
       });
   
       if (!response.ok) {
         setError(true);
-        setStatusMessage("Failed to update transportation type");
+        setStatusMessage("Failed to update transportation type because " + await response.text());
         setShowModal(false);
         throw new Error('Failed to update transportation type');
       }
@@ -97,8 +154,7 @@ const TrackingAdmin = () => {
       setShowModal(false);
       setStatusMessage("Status updated to DIKIRIM using " + transportationType);
     } catch (error) {
-      console.error('Error updating transportation:', error);
-      setStatusMessage("Failed to update transportation: " + error);
+      console.error("Error updating transportation type:", error);
     }
   }
 
