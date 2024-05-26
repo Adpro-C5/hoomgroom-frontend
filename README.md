@@ -1,3 +1,24 @@
+----------------------------------------------------------------------------------------------------------
+Tutorial 12 reflection:
+1. initial diagram:
+context:
+![first-context-diagram](diagram/r1.jpg)
+container:
+![first-container-diagram](diagram/r2.png)
+
+2. future diagram
+context:
+![future-context-diagram](diagram/r3.png)
+container:
+![future-context-diagram](diagram/r4.png)
+
+3. Risk storming:
+
+1. Pengubahan keamanan dengan menggunakan library third party untuk memastikan keamanan aplikasi tetap terjaga
+2. pengubahan role pengguna menjadi admin dan user biasa dimana admin dapat mendaftarkan barang baru dikarenakan kekhawatiran bahwa pengguna biasa yang dapat menambahkan produk secara bebas dapat melakukan penipuan dengan mudah jika tidak diverifikasi terlebih dahulu. hal ini juga meningkatkan keamanan aplikasi.
+3. Aslinya penggunaan 1 database untuk semua microservice menurut kami terlalu beresiko, namun karena penggunaan lebih banyak database dapat meningkatkan biaya operasional. Selain itu, jika tiap microservice bekerja menggunakan database yang berbeda, jika database untuk suatu microservice gagal, kami khawatirkan hal tersebut tetap akan membuat microservice lain juga tidak berfungsi karena tiap microservice pada aplikasi kami sering berkomunikasi. Oleh karena beberapa alasan tersebut, kami memutuskan untuk tetap menggunakan 1 database.
+
+----------------------------------------------------------------------------------------------------------
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
