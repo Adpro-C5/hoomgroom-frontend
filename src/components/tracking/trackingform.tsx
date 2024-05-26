@@ -13,7 +13,6 @@ const trackingform = () => {
     const shipment = await getShipment(trackingNumber);
     if (shipment === "No Order Found") {
       setError(true);
-      setStatus(shipment);
       return;
     } else{
       if (shipment.status === "MENUNGGU_VERIFIKASI") {
@@ -32,6 +31,7 @@ const trackingform = () => {
       cache: 'no-store',
     });
     if (!response.ok) {
+      setStatus("Failed to Search Order because " + await response.text());
       return "No Order Found";
     }
     return response.json();
