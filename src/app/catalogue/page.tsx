@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
+import Link from 'next/link';
 
-export default function page() {
+async function getCatalogue(){
+  const res = await fetch("http://localhost:8080/product/catalogue");
+  return await res.json();
+}
+
+async function CataloguePage() {
+  const products = await getCatalogue();
+
     return (
       <>
       <div className='bg-white min-h-screen'>
-      <header className='bg-cyan-900 shadow'>
-				<div className='mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8'>
-					<h1 className='text-3xl font-bold tracking-tight text-white-900'>
-						HoomGroom
-					</h1>
-				</div>
-			</header>
-
       <main className='mx-auto max-w-7xl py-4 my-8 sm:px-6 lg:px-8'>
         <h1 className='text-3xl font-bold tracking-tight text-cyan-900'>
 						Catalogue
@@ -38,17 +38,42 @@ export default function page() {
         </div>
 
         <div className='max-w-md py-3'>
-        <div className='relative flex'>
-          <select className="peer h-full outline-none rounded bg-gray-100 text-sm text-gray-700 pr-2 pl-2" id="filter">
-            <option value="all">All</option>
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-          </select>
+          <div className='relative flex'>
+            <select className="peer h-full outline-none rounded bg-gray-100 text-sm text-gray-700 pr-2 pl-2" id="filter">
+              <option value="all">All</option>
+              <option value="Kursi">Kursi</option>
+              <option value="Meja">Meja</option>
+              <option value="Penyimpanan">Penyimpanan</option>
+              <option value="Dekorasi">Dekorasi</option>
+              <option value="Ranjang">Ranjang</option>
+              <option value="Harga Minimal">Harga Minimal</option>
+              <option value="Harga Maksimal">Harga Maksimal</option>
+            </select>
           </div>
         </div>
+
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+          {products?.map((product: any) => {
+                    return <Catalogue key={product.Id} product={product}/>;
+                })}
+          </div>
       </main>
       </div>
       </>
-    )
-  }
+    );
+}
+
+function Catalogue({product}: any){
+  const {id, productName, categories, description, imagePath, price, discountedPriced, sales} = product || {};
+
+  return(
+    <Link href = {`/product/${id}`}>
+      <div>
+          <h2>Product Name: {id}</h2>
+          <h5>Description: {description}</h5>
+          <p>Total Price: {price}</p>
+      </div>
+    </Link>
+  );
+}
+export default CataloguePage;

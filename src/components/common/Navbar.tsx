@@ -40,13 +40,6 @@ export default function Navbar() {
 				Home
 			</NavLink>
 			<NavLink
-				isSelected={isSelected('/catalogue')}
-				isMobile={isMobile}
-				href='/catalogue'
-			>
-				My Catalogue
-			</NavLink>
-			<NavLink
 				isSelected={isSelected('/profile')}
 				isMobile={isMobile}
 				href='/profile'
@@ -91,6 +84,13 @@ export default function Navbar() {
 				>
 					Register
 				</button>
+			</NavLink>
+			<NavLink
+				isSelected={isSelected('/catalogue')}
+				isMobile={isMobile}
+				href='/catalogue'
+			>
+				My Catalogue
 			</NavLink>
 		</>
 	);
