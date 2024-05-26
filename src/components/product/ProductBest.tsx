@@ -35,13 +35,14 @@ const ProductsBest = async () => {
             <td className='p-2 border border-sky-950'>{Product.id}</td>
             <td className='p-2 border border-sky-950'>{Product.productName}</td>
             <td className='p-2 border border-sky-950'>{Product.description}</td>
-            {Product.categories.map(
-                category => <td key={category} className='p-2 border border-sky-950'> 
-                <Button className="inline-flex items-center gap-2 rounded-md bg-cyan-500 py-1.5 px-3">
-                  Save changes
+            <td className='p-2 border border-sky-950'>
+              {Product.categories.map(
+                category => 
+                <Button key={category} className="inline-flex items-center gap-2 rounded-md bg-cyan-500 py-1.5 px-3">
+                  {category}
                 </Button>
-                </td>
               )}
+            </td>
             <td className='p-2 border border-sky-950'>{Product.price}</td>
             <td className='p-2 border border-sky-950'>{Product.discountedPrice}</td>
             <td className='p-2 border border-sky-950'>{Product.sales.toString()}</td>
