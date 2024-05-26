@@ -8,7 +8,7 @@ export default function page() {
       <h1 className='
       font-bold text-4xl font-center
       text-center text-blue-900 py-10'
-      >Modify Shipment (Admin Page)</h1>
+      >📦 Modify Shipment (Admin Page) ⚙️</h1>
       <TrackingAdmin/>
     </div>
   )

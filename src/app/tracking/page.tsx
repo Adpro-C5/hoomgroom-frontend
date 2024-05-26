@@ -9,7 +9,7 @@ export default function page() {
       className='
       font-bold text-4xl font-center
       text-center text-blue-900 py-10'
-      >Track Your Shipping Here!</h1>
+      >📦 Track Your Shipping Here!</h1>
       <TrackingForm/>
     </div>
   )
