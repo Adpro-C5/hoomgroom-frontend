@@ -2,9 +2,19 @@
 
 import React, {useEffect, useState} from "react";
 
+interface Transaction {
+    transactionId: string;
+    userId: number;
+    productId: string;
+    productAmount: number;
+    promoCode: string;
+    paymentDate: string;
+    totalPrice: number;
+}
+
 export default function TransactionPage({params}:any){
-    let [transaction, setTransaction] = useState({});
-    let [error, setError] = useState(null);
+    let [transaction, setTransaction] = useState<Transaction | undefined>(undefined);
+    let [error, setError] = useState<Error | null>(null);
     let [productName, setProductName] = useState("");
 
     useEffect(() => {
@@ -43,8 +53,16 @@ export default function TransactionPage({params}:any){
             })
     }, [params.transactionId]);
 
-    if(error){
+    if(error != null){
         return <div>{error.message}</div>;
+    }
+
+    if (!transaction) {
+        return (
+            <div>
+                <h1>Memuat transaksi...</h1>
+            </div>
+        );
     }
 
     return(
