@@ -1,7 +1,7 @@
 import { getBestProducts, Product } from '@/lib/product/bestproducts';
 import Image from 'next/image';
 import React from 'react'
-import { Button } from '@headlessui/react';
+import { Flex, Tag } from 'antd';
 
 
 const ProductsBest = async () => {
@@ -36,12 +36,14 @@ const ProductsBest = async () => {
             <td className='p-2 border border-sky-950'>{Product.productName}</td>
             <td className='p-2 border border-sky-950'>{Product.description}</td>
             <td className='p-2 border border-sky-950'>
-              {Product.categories.map(
-                category => 
-                <Button key={category} className="inline-flex items-center gap-2 rounded-md bg-cyan-500 py-1.5 px-3">
-                  {category}
-                </Button>
-              )}
+              <Flex gap="4px 0" wrap>
+                {
+                  Product.categories &&
+                  Product.categories.map(
+                    category => <Tag color='magenta' key={category}>{category}</Tag>
+                  )
+                }
+              </Flex>
             </td>
             <td className='p-2 border border-sky-950'>{Product.price}</td>
             <td className='p-2 border border-sky-950'>{Product.discountedPrice}</td>

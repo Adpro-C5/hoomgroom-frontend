@@ -12,6 +12,8 @@ function page() {
       <div className='p-4'>
         <Link className='p-2 border rounded-lg border-spacing-2 bg-sky-200' href='/'>Go Back</Link>
         <Link className='p-2 border rounded-lg border-spacing-2 bg-sky-200 mx-2' href='/product/add'>Create Product</Link>
+        <Link className='p-2 border rounded-lg border-spacing-2 bg-sky-200' href='/product/best10'>See Our Best 10!</Link>
+        <Link className='p-2 border rounded-lg border-spacing-2 bg-sky-200 mx-2' href='/product/worst10'>Or Our Worst 10?</Link>
       </div>
     </main>
   )
