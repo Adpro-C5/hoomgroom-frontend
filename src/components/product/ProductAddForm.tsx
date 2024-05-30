@@ -1,8 +1,7 @@
 "use client"
 import productadd from '@/lib/product/productadd';
-import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react'
+import { Select, SelectProps } from 'antd';
 import { redirect, RedirectType } from 'next/navigation';
-import { Router } from 'next/router';
 import React, { useEffect, useState } from 'react'
 import { v4 } from 'uuid';
 
@@ -16,13 +15,14 @@ export default function ProductAddForm() {
   const [errors, setErrors] = useState({} as any);
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const options = [
+  const options: SelectProps['options'] = [];
+  options.push(
     {value: 'kursi', label: 'kursi'}, 
     {value: 'meja', label: 'meja'}, 
     {value: 'penyimpanan', label: 'penyimpanan'}, 
     {value: 'dekorasi', label: 'dekorasi'}, 
     {value: 'ranjang', label: 'ranjang'}, 
-  ]
+  )
   
 
   useEffect(() => {
@@ -124,17 +124,16 @@ export default function ProductAddForm() {
           {errors.description && <p className='text-red-300' >{errors.description}</p>}
         </div>
         <div className='p-2'>
-          <label htmlFor="categories">Product Description :</label>
-          <Listbox value={categories} onChange={(e) => setCategories(e)} multiple>
-            <ListboxButton>{categories.map((category) => category).join(', ')}</ListboxButton>
-            <ListboxOptions anchor="bottom">
-              {options.map((option) => (
-                <ListboxOption key={option.value} value={option.value} className="data-[focus]:bg-blue-100">
-                  {option.label}
-                </ListboxOption>
-              ))}
-            </ListboxOptions>
-          </Listbox>
+          <label htmlFor="categories">Product Categories :</label>
+          <Select 
+            style={{ width: '15%' }}
+            id='categories'  
+            value={categories}
+            placeholder= '  Or Tags'
+            onChange={(e) => setCategories(e)}
+            options={options}
+            mode='multiple'
+          />
           {errors.categories && <p className='text-red-300' >{errors.categories}</p>}
         </div>
         <div className='p-2'>
