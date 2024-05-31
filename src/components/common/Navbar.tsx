@@ -40,6 +40,27 @@ export default function Navbar() {
 				Home
 			</NavLink>
 			<NavLink
+				isSelected={isSelected('/catalogue')}
+				isMobile={isMobile}
+				href='/catalogue'
+			>
+				My Catalogue
+			</NavLink>
+			<NavLink
+				isSelected={isSelected('/transaction')}
+				isMobile={isMobile}
+				href='/transaction/list'
+			>
+				Transaction
+			</NavLink>
+			<NavLink
+				isSelected={isSelected('/tracking')}
+				isMobile={isMobile}
+				href='/tracking'
+			>
+				Tracking
+			</NavLink>
+			<NavLink
 				isSelected={isSelected('/profile')}
 				isMobile={isMobile}
 				href='/profile'
@@ -86,11 +107,30 @@ export default function Navbar() {
 				</button>
 			</NavLink>
 			<NavLink
+				isSelected={isSelected('/tracking')}
+				isMobile={isMobile}
+				href='/tracking'
+			>
+				<button
+					className={`${
+						isMobile ? 'block w-full text-left' : 'inline-block'
+					} bg-amber-500 text-white px-3 py-2 rounded-md text-sm font-medium`}
+				>
+					Tracking
+				</button>
+			</NavLink>
+			<NavLink
 				isSelected={isSelected('/catalogue')}
 				isMobile={isMobile}
 				href='/catalogue'
 			>
-				My Catalogue
+				<button
+					className={`${
+						isMobile ? 'block w-full text-left' : 'inline-block'
+					} bg-amber-500 text-white px-3 py-2 rounded-md text-sm font-medium`}
+				>
+					Catalogue
+				</button>
 			</NavLink>
 		</>
 	);

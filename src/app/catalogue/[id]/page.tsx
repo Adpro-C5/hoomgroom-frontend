@@ -50,7 +50,7 @@ function ProductDetailPage({ params }: any) {
     return <div>Loading...</div>;
   }
 
-  const { productName, categories, description, imagePath, price, discountedPrice, sales } = product;
+  const { id, productName, categories, description, imagePath, price, discountedPrice, sales } = product;
 
   return (
     <div className='bg-white min-h-screen'>
@@ -65,7 +65,7 @@ function ProductDetailPage({ params }: any) {
           <p className='text-lg text-cyan-900 font-bold mb-2'>Price: Rp{price}</p>
           {discountedPrice && <p className='text-lg text-cyan-700 font-bold mb-2'>Discounted Price: Rp{discountedPrice}</p>}
           <p className='text-lg text-gray-700 mb-4'>Sales: {sales.toString()}</p>
-          <Link href="/another-page">
+          <Link href={`/transaction/buy/${id}`}>
             <a className="bg-cyan-700 text-white rounded-lg font-semibold px-8 py-4 hover:bg-cyan-600 focus:bg-cyan-900 focus:outline-none">
               Go to Another Page
             </a>
