@@ -119,6 +119,19 @@ export default function Navbar() {
 					Tracking
 				</button>
 			</NavLink>
+			<NavLink
+				isSelected={isSelected('/catalogue')}
+				isMobile={isMobile}
+				href='/catalogue'
+			>
+				<button
+					className={`${
+						isMobile ? 'block w-full text-left' : 'inline-block'
+					} bg-amber-500 text-white px-3 py-2 rounded-md text-sm font-medium`}
+				>
+					Catalogue
+				</button>
+			</NavLink>
 		</>
 	);
 
